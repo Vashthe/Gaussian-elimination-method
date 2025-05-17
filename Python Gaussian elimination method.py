@@ -10,7 +10,7 @@ def gaussian_elimination(A, b):
         # 检查主元是否为0
         if augm_mat[col, col] == 0:
             # 尝试找到下方非零行进行交换
-            for row_below in range(col+1, n):
+            for row_below in range(col+1, cols):
                 if augm_mat[row_below, col] != 0:
                     augm_mat[[col, row_below]] = augm_mat[[row_below, col]]
                     break
