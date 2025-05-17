@@ -9,8 +9,13 @@ def gaussian_elimination(A, b):
     for col in range(cols):
         # 检查主元是否为0
         if augm_mat[col, col] == 0:
-            print("主元为0，无法求解")
-            exit()
+            # 尝试找到下方非零行进行交换
+            for row_below in range(col+1, n):
+                if augm_mat[row_below, col] != 0:
+                    augm_mat[[col, row_below]] = augm_mat[[row_below, col]]
+                    break
+            else:
+                raise ValueError("矩阵是奇异的，无法求解")
 
         # 归一化当前行
         augm_mat[col] = augm_mat[col] / augm_mat[col, col]
